@@ -406,10 +406,18 @@
             border-radius: 8px;
             cursor: pointer;
             transition: var(--transition);
+            border: 2px solid transparent;
+            overflow: hidden;
         }
 
         .thumbnail:hover {
             transform: scale(1.05);
+            border-color: var(--primary-light);
+        }
+
+        .thumbnail.active {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 10px rgba(19, 131, 139, 0.3);
         }
 
         .product-info-detailed {
@@ -987,7 +995,13 @@
                 name: 'Kit Grade Colmeia New Fiesta',
                 price: 1250,
                 stock: 15,
-                image: 'https://raw.githubusercontent.com/Led-Line-BR-Parts/led-line-images/refs/heads/main/images/Imagem_do_WhatsApp_de_2025-02-18_a_s_22.25.18_f093e2b1.webp',
+                image: '🏁',
+                images: [
+                    '🏁', // Imagem principal
+                    '🚗', // Vista lateral
+                    '🔧', // Detalhe instalação
+                    '📏'  // Medidas/dimensões
+                ],
                 description: 'Grade frontal colmeia premium para New Fiesta',
                 features: [
                     ['Material', 'ABS Premium'],
@@ -1003,7 +1017,13 @@
                 name: 'Kit Grade Colmeia Focus MK2,5',
                 price: 1050,
                 stock: 20,
-                image: 'https://raw.githubusercontent.com/Led-Line-BR-Parts/led-line-images/refs/heads/main/images/Designsemnome_1_7f57786f-92da-4868-a167-774e716d5bf3.webp',
+                image: '🔷',
+                images: [
+                    '🔷', // Imagem principal
+                    '🚗', // Vista lateral
+                    '🔧', // Detalhe instalação
+                    '📏'  // Medidas/dimensões
+                ],
                 description: 'Grade frontal colmeia para Focus MK2.5',
                 features: [
                     ['Material', 'ABS Premium'],
@@ -1019,7 +1039,13 @@
                 name: 'Aerofólio Ducktail Civic G10',
                 price: 1000,
                 stock: 4,
-                image: 'https://raw.githubusercontent.com/Led-Line-BR-Parts/led-line-images/refs/heads/main/images/Screenshot_142.webp',
+                image: '🦆',
+                images: [
+                    '🦆', // Imagem principal
+                    '🚗', // Vista lateral
+                    '🔧', // Detalhe instalação
+                    '📏'  // Medidas/dimensões
+                ],
                 description: 'Aerofólio ducktail estilo esportivo para Civic G10',
                 features: [
                     ['Material', 'Fibra de Vidro'],
@@ -1035,7 +1061,13 @@
                 name: 'Grade do Fiesta ST',
                 price: 900,
                 stock: 4,
-                image: https://raw.githubusercontent.com/Led-Line-BR-Parts/led-line-images/refs/heads/main/images/Screenshot_48.webp,
+                image: '🏎️',
+                images: [
+                    'https://raw.githubusercontent.com/Led-Line-BR-Parts/led-line-images/refs/heads/main/images/7d01f874-9916-4d79-8aae-e988e5667ec4.webp', // Imagem principal
+                    'https://raw.githubusercontent.com/Led-Line-BR-Parts/led-line-images/refs/heads/main/images/7e12f646-a6b2-41ac-bd5e-720f5d7046d8.webp', // Vista lateral
+                    'https://raw.githubusercontent.com/Led-Line-BR-Parts/led-line-images/refs/heads/main/images/c2b25c7e-46d8-48b7-89b3-446892cdf7ac.webp', // Detalhe instalação
+                    'https://raw.githubusercontent.com/Led-Line-BR-Parts/led-line-images/refs/heads/main/images/Screenshot_48.webp'  // Medidas/dimensões
+                ],
                 description: 'Grade frontal esportiva estilo ST para Fiesta',
                 features: [
                     ['Material', 'ABS Premium'],
@@ -1051,7 +1083,13 @@
                 name: 'Parachoque New Fiesta ST',
                 price: 4500,
                 stock: 10,
-                image: https://github.com/Led-Line-BR-Parts/led-line-images/blob/main/images/Screenshot_338.png?raw=true,
+                image: '🚙',
+                images: [
+                    '🚙', // Imagem principal
+                    '🚗', // Vista lateral
+                    '🔧', // Detalhe instalação
+                    '📏'  // Medidas/dimensões
+                ],
                 description: 'Parachoque frontal completo estilo ST para New Fiesta',
                 features: [
                     ['Material', 'ABS Premium'],
@@ -1067,7 +1105,13 @@
                 name: 'Saia Lateral',
                 price: 1000,
                 stock: 9,
-                image: 'https://github.com/Led-Line-BR-Parts/led-line-images/blob/main/images/Screenshot_339.png?raw=true',
+                image: '📏',
+                images: [
+                    '📏', // Imagem principal
+                    '🚗', // Vista lateral
+                    '🔧', // Detalhe instalação
+                    '📐'  // Medidas/dimensões
+                ],
                 description: 'Saia lateral esportiva universal',
                 features: [
                     ['Material', 'ABS Premium'],
@@ -1083,7 +1127,13 @@
                 name: 'Parachoque Focus',
                 price: 4000,
                 stock: 5,
-                image: 'https://github.com/Led-Line-BR-Parts/led-line-images/blob/main/images/Screenshot_340.png?raw=true',
+                image: '🔧',
+                images: [
+                    '🔧', // Imagem principal
+                    '🚗', // Vista lateral
+                    '🔩', // Detalhe instalação
+                    '📏'  // Medidas/dimensões
+                ],
                 description: 'Parachoque frontal esportivo para Focus',
                 features: [
                     ['Material', 'ABS Premium'],
@@ -1132,17 +1182,54 @@
                 
                 const card = document.createElement('div');
                 card.className = 'product-card';
-                card.innerHTML = `
-                    <div class="product-image">
-                        <span style="font-size: 4rem;">${product.image}</span>
-                        <div class="stock-badge ${stockClass}">${stockText}</div>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-name">${product.name}</h3>
-                        <div class="product-price">${formatCurrency(product.price)}</div>
-                        <p class="product-desc">${product.description}</p>
-                    </div>
+                
+                // Create product image div
+                const productImageDiv = document.createElement('div');
+                productImageDiv.className = 'product-image';
+                
+                // Check if image is URL or emoji and create appropriate element
+                if (product.image && product.image.startsWith('http')) {
+                    const img = document.createElement('img');
+                    img.src = product.image;
+                    img.alt = product.name;
+                    img.style.width = '100%';
+                    img.style.height = '100%';
+                    img.style.objectFit = 'cover';
+                    img.onerror = function() {
+                        // If image fails to load, show emoji fallback
+                        this.style.display = 'none';
+                        const fallback = document.createElement('span');
+                        fallback.style.fontSize = '4rem';
+                        fallback.textContent = '🚗';
+                        productImageDiv.appendChild(fallback);
+                    };
+                    productImageDiv.appendChild(img);
+                } else {
+                    // Show emoji if not URL
+                    const emojiSpan = document.createElement('span');
+                    emojiSpan.style.fontSize = '4rem';
+                    emojiSpan.textContent = product.image || '🚗';
+                    productImageDiv.appendChild(emojiSpan);
+                }
+                
+                // Add stock badge
+                const stockBadge = document.createElement('div');
+                stockBadge.className = `stock-badge ${stockClass}`;
+                stockBadge.textContent = stockText;
+                productImageDiv.appendChild(stockBadge);
+                
+                // Create product info
+                const productInfo = document.createElement('div');
+                productInfo.className = 'product-info';
+                productInfo.innerHTML = `
+                    <h3 class="product-name">${product.name}</h3>
+                    <div class="product-price">${formatCurrency(product.price)}</div>
+                    <p class="product-desc">${product.description}</p>
                 `;
+                
+                // Assemble card
+                card.appendChild(productImageDiv);
+                card.appendChild(productInfo);
                 
                 if (product.stock > 0) {
                     card.addEventListener('click', () => selectProduct(product.id));
@@ -1179,9 +1266,14 @@
             
             // Update product info
             document.getElementById('productTitle').textContent = currentProduct.name;
-            document.getElementById('mainImage').innerHTML = `<span style="font-size: 6rem;">${currentProduct.image}</span>`;
             document.getElementById('quantity').value = currentQuantity;
             document.getElementById('quantity').max = currentProduct.stock;
+            
+            // Update main image
+            updateMainImage(0); // Show first image by default
+            
+            // Update thumbnails
+            updateThumbnails();
             
             // Update features
             const featuresContainer = document.getElementById('productFeatures');
@@ -1197,6 +1289,95 @@
             });
             
             updatePaymentOptions();
+        }
+
+        function updateMainImage(imageIndex) {
+            const mainImage = document.getElementById('mainImage');
+            const images = currentProduct.images || [currentProduct.image];
+            const selectedImage = images[imageIndex] || images[0];
+            
+            // Clear existing content
+            mainImage.innerHTML = '';
+            
+            // Check if it's a URL or emoji
+            if (selectedImage && selectedImage.startsWith('http')) {
+                const img = document.createElement('img');
+                img.src = selectedImage;
+                img.alt = currentProduct.name;
+                img.style.width = '100%';
+                img.style.height = '100%';
+                img.style.objectFit = 'cover';
+                img.style.borderRadius = '12px';
+                img.onerror = function() {
+                    // If image fails to load, show emoji fallback
+                    mainImage.innerHTML = `<span style="font-size: 6rem;">🚗</span>`;
+                };
+                mainImage.appendChild(img);
+            } else {
+                // Show emoji
+                mainImage.innerHTML = `<span style="font-size: 6rem;">${selectedImage || '🚗'}</span>`;
+            }
+        }
+
+        function updateThumbnails() {
+            const thumbnailGrid = document.querySelector('.thumbnail-grid');
+            thumbnailGrid.innerHTML = '';
+            
+            const images = currentProduct.images || [currentProduct.image];
+            
+            images.forEach((image, index) => {
+                const thumbnail = document.createElement('div');
+                thumbnail.className = 'thumbnail';
+                
+                // Check if it's a URL or emoji
+                if (image && image.startsWith('http')) {
+                    const img = document.createElement('img');
+                    img.src = image;
+                    img.alt = `${currentProduct.name} - Imagem ${index + 1}`;
+                    img.style.width = '100%';
+                    img.style.height = '100%';
+                    img.style.objectFit = 'cover';
+                    img.style.borderRadius = '8px';
+                    img.onerror = function() {
+                        // If image fails to load, show emoji fallback
+                        thumbnail.innerHTML = '';
+                        thumbnail.style.display = 'flex';
+                        thumbnail.style.alignItems = 'center';
+                        thumbnail.style.justifyContent = 'center';
+                        thumbnail.style.fontSize = '1.5rem';
+                        thumbnail.textContent = '🚗';
+                    };
+                    thumbnail.appendChild(img);
+                } else {
+                    // Show emoji
+                    thumbnail.style.display = 'flex';
+                    thumbnail.style.alignItems = 'center';
+                    thumbnail.style.justifyContent = 'center';
+                    thumbnail.style.fontSize = '1.5rem';
+                    thumbnail.textContent = image || '🚗';
+                }
+                
+                // Add active state for first thumbnail
+                if (index === 0) {
+                    thumbnail.classList.add('active');
+                }
+                
+                // Add click event
+                thumbnail.addEventListener('click', () => {
+                    // Remove active state from all thumbnails
+                    document.querySelectorAll('.thumbnail').forEach(thumb => {
+                        thumb.classList.remove('active');
+                    });
+                    
+                    // Add active state to clicked thumbnail
+                    thumbnail.classList.add('active');
+                    
+                    // Update main image
+                    updateMainImage(index);
+                });
+                
+                thumbnailGrid.appendChild(thumbnail);
+            });
         }
 
         function changeQuantity(delta) {
