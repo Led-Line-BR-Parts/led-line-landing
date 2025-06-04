@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Led Line BR Parts- Peças Automotivas Premium</title>
+    <title>Led Line BR Parts - Peças Automotivas Premium</title>
     
     <style>
         :root {
@@ -47,6 +47,55 @@
             padding: 0 20px;
         }
 
+        /* Timer Bar */
+        .timer-bar {
+            background: linear-gradient(135deg, #dc3545 0%, #fd7e14 100%);
+            color: white;
+            padding: 12px 0;
+            text-align: center;
+            font-weight: 700;
+            animation: pulse 2s infinite;
+            position: sticky;
+            top: 0;
+            z-index: 1001;
+        }
+
+        .timer-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .timer-text {
+            font-size: 1.1rem;
+        }
+
+        .countdown {
+            display: flex;
+            gap: 10px;
+        }
+
+        .countdown-item {
+            background: rgba(255,255,255,0.2);
+            padding: 8px 12px;
+            border-radius: 8px;
+            text-align: center;
+            min-width: 60px;
+        }
+
+        .countdown-number {
+            font-size: 1.5rem;
+            font-weight: 800;
+            display: block;
+        }
+
+        .countdown-label {
+            font-size: 0.8rem;
+            opacity: 0.9;
+        }
+
         /* Header */
         .header {
             background: var(--gradient-primary);
@@ -54,7 +103,7 @@
             padding: 20px 0;
             box-shadow: var(--shadow-lg);
             position: sticky;
-            top: 0;
+            top: 60px;
             z-index: 1000;
         }
 
@@ -109,6 +158,124 @@
             0% { transform: scale(1); }
             50% { transform: scale(1.05); }
             100% { transform: scale(1); }
+        }
+
+        /* Live Notifications */
+        .live-notification {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--shadow-lg);
+            padding: 15px 20px;
+            border-left: 4px solid var(--accent-color);
+            transform: translateX(-400px);
+            transition: var(--transition);
+            z-index: 1000;
+            max-width: 300px;
+            animation: slideIn 0.5s ease-out forwards;
+        }
+
+        .live-notification.show {
+            transform: translateX(0);
+        }
+
+        .notification-content {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .notification-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+        }
+
+        .notification-text {
+            flex: 1;
+        }
+
+        .notification-name {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .notification-action {
+            font-size: 0.8rem;
+            color: var(--text-light);
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(-400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        /* Chat Bot */
+        .chat-bot {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: var(--shadow-lg);
+            transition: var(--transition);
+            z-index: 1000;
+            animation: bounce 2s infinite;
+        }
+
+        .chat-bot:hover {
+            transform: scale(1.1);
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+            60% { transform: translateY(-5px); }
+        }
+
+        .chat-tooltip {
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            background: white;
+            padding: 12px 16px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            white-space: nowrap;
+            color: var(--text-color);
+            font-size: 0.9rem;
+            font-weight: 600;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: var(--transition);
+            pointer-events: none;
+        }
+
+        .chat-bot:hover .chat-tooltip {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         /* Hero Section */
@@ -170,6 +337,25 @@
         .delivery-info h3 {
             font-size: 1.2rem;
             margin-bottom: 10px;
+        }
+
+        .guarantees-bar {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .guarantee-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.15);
+            padding: 10px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
         }
 
         /* Sale Type Selection */
@@ -251,6 +437,18 @@
             margin-right: 8px;
         }
 
+        .economy-highlight {
+            background: linear-gradient(135deg, #ffc107 0%, #fd7e14 100%);
+            color: white;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            margin: 20px 0;
+            text-align: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            animation: pulse 3s infinite;
+        }
+
         /* Product Selection */
         .product-section {
             padding: 80px 0;
@@ -290,6 +488,7 @@
             cursor: pointer;
             transition: var(--transition);
             border: 3px solid transparent;
+            position: relative;
         }
 
         .product-card:hover {
@@ -332,6 +531,43 @@
 
         .stock-badge.out {
             background: var(--danger-color);
+        }
+
+        .bestseller-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: linear-gradient(135deg, #ffc107 0%, #fd7e14 100%);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            animation: pulse 2s infinite;
+        }
+
+        .viewers-badge {
+            position: absolute;
+            bottom: 15px;
+            left: 15px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        .recommendation-badge {
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+            background: var(--accent-color);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
         }
 
         .product-info {
@@ -453,6 +689,61 @@
             color: var(--text-light);
         }
 
+        .economy-calculator {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            padding: 25px;
+            border-radius: var(--border-radius);
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .economy-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .economy-comparison {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 20px;
+            align-items: center;
+            margin: 20px 0;
+        }
+
+        .price-option {
+            text-align: center;
+        }
+
+        .price-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-bottom: 5px;
+        }
+
+        .price-value {
+            font-size: 1.5rem;
+            font-weight: 800;
+        }
+
+        .price-value.old {
+            text-decoration: line-through;
+            opacity: 0.7;
+        }
+
+        .vs-divider {
+            font-size: 1.2rem;
+            font-weight: 700;
+        }
+
+        .savings-amount {
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: #ffc107;
+            margin-top: 10px;
+        }
+
         /* Quantity Selection */
         .quantity-section {
             background: var(--secondary-color);
@@ -512,6 +803,61 @@
             font-size: 1.5rem;
             font-weight: 700;
             color: var(--primary-color);
+        }
+
+        .budget-calculator {
+            background: white;
+            border: 2px solid var(--primary-color);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .budget-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-align: center;
+            color: var(--primary-color);
+        }
+
+        .installment-slider {
+            margin: 15px 0;
+        }
+
+        .slider {
+            width: 100%;
+            height: 8px;
+            border-radius: 5px;
+            background: var(--border-color);
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .slider::-webkit-slider-thumb {
+            appearance: none;
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            cursor: pointer;
+        }
+
+        .slider::-moz-range-thumb {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background: var(--primary-color);
+            cursor: pointer;
+            border: none;
+        }
+
+        .installment-display {
+            text-align: center;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-top: 10px;
         }
 
         /* Payment Options */
@@ -600,6 +946,211 @@
         .payment-value {
             color: var(--text-color);
             font-weight: 600;
+        }
+
+        /* Spin Wheel */
+        .wheel-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 60px 0;
+            text-align: center;
+            color: white;
+        }
+
+        .wheel-container {
+            max-width: 400px;
+            margin: 40px auto;
+            position: relative;
+        }
+
+        .spin-wheel {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            position: relative;
+            margin: 0 auto;
+            background: conic-gradient(
+                #ff6b6b 0deg 90deg,
+                #4ecdc4 90deg 180deg,
+                #45b7d1 180deg 270deg,
+                #f9ca24 270deg 360deg
+            );
+            border: 8px solid white;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .wheel-pointer {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-top: 30px solid white;
+            z-index: 10;
+        }
+
+        .wheel-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            cursor: pointer;
+            transition: var(--transition);
+            z-index: 10;
+        }
+
+        .wheel-center:hover {
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+
+        .wheel-labels {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .wheel-label {
+            position: absolute;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: white;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .wheel-label:nth-child(1) { top: 20%; left: 70%; }
+        .wheel-label:nth-child(2) { top: 70%; left: 70%; }
+        .wheel-label:nth-child(3) { top: 70%; left: 10%; }
+        .wheel-label:nth-child(4) { top: 20%; left: 10%; }
+
+        .spin-btn {
+            background: white;
+            color: var(--primary-color);
+            border: none;
+            padding: 15px 30px;
+            border-radius: var(--border-radius);
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            margin-top: 30px;
+            transition: var(--transition);
+        }
+
+        .spin-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow);
+        }
+
+        .wheel-result {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Progress Bar */
+        .progress-section {
+            background: white;
+            padding: 40px;
+            border-radius: var(--border-radius);
+            margin: 30px 0;
+            border: 2px solid var(--primary-color);
+        }
+
+        .progress-title {
+            text-align: center;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .progress-bar {
+            background: var(--border-color);
+            height: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--gradient-primary);
+            transition: width 0.3s ease;
+            border-radius: 10px;
+        }
+
+        .progress-text {
+            text-align: center;
+            margin-top: 10px;
+            font-weight: 600;
+        }
+
+        /* Referral System */
+        .referral-section {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            padding: 40px;
+            border-radius: var(--border-radius);
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .referral-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .referral-code {
+            background: rgba(255,255,255,0.2);
+            padding: 15px 20px;
+            border-radius: var(--border-radius);
+            font-family: monospace;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin: 20px 0;
+            border: 2px dashed rgba(255,255,255,0.5);
+        }
+
+        .share-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .share-btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+        }
+
+        .share-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
         }
 
         /* CTA Section */
@@ -739,6 +1290,45 @@
             .sale-type-grid {
                 grid-template-columns: 1fr;
             }
+
+            .countdown {
+                gap: 5px;
+            }
+
+            .countdown-item {
+                min-width: 50px;
+                padding: 6px 8px;
+            }
+
+            .live-notification {
+                left: 15px;
+                right: 15px;
+                max-width: none;
+            }
+
+            .chat-bot {
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .guarantees-bar {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .economy-comparison {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .spin-wheel {
+                width: 250px;
+                height: 250px;
+            }
+
+            .share-buttons {
+                flex-direction: column;
+            }
         }
 
         /* Animations */
@@ -801,9 +1391,45 @@
             display: inline-block;
             margin-top: 10px;
         }
+
+        .spinning {
+            animation: spin 2s ease-out;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(1440deg); }
+        }
     </style>
 </head>
 <body>
+    <!-- Timer Bar -->
+    <div class="timer-bar">
+        <div class="container">
+            <div class="timer-content">
+                <span class="timer-text">🚢 CONTAINER FECHA EM:</span>
+                <div class="countdown" id="countdown">
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="days">10</span>
+                        <span class="countdown-label">DIAS</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="hours">00</span>
+                        <span class="countdown-label">HORAS</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="minutes">00</span>
+                        <span class="countdown-label">MIN</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-number" id="seconds">00</span>
+                        <span class="countdown-label">SEG</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Header -->
     <header class="header">
         <div class="container">
@@ -822,12 +1448,44 @@
         </div>
     </header>
 
+    <!-- Live Notifications -->
+    <div class="live-notification" id="liveNotification">
+        <div class="notification-content">
+            <div class="notification-avatar" id="notificationAvatar">J</div>
+            <div class="notification-text">
+                <div class="notification-name" id="notificationName">João</div>
+                <div class="notification-action" id="notificationAction">acabou de comprar 1x Grade Fiesta</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chat Bot -->
+    <div class="chat-bot" onclick="openWhatsApp()">
+        <span>💬</span>
+        <div class="chat-tooltip">Precisa de ajuda? Fale comigo!</div>
+    </div>
+
     <!-- Hero Section -->
     <section class="hero">
         <div class="container">
             <div class="hero-content fade-in">
                 <h2>Transforme Seu Carro com Peças Premium</h2>
                 <p>Peças automotivas de alta qualidade importadas diretamente para você. Design exclusivo, qualidade garantida e preços imbatíveis!</p>
+                
+                <div class="guarantees-bar">
+                    <div class="guarantee-item">
+                        <span>✅</span>
+                        <span>Garantia de Satisfação 100%</span>
+                    </div>
+                    <div class="guarantee-item">
+                        <span>⭐</span>
+                        <span>95% dos clientes recomendam</span>
+                    </div>
+                    <div class="guarantee-item">
+                        <span>🏆</span>
+                        <span>Produtos Originais</span>
+                    </div>
+                </div>
                 
                 <div class="delivery-info">
                     <h3>🚚 Entrega Garantida em 90 Dias Corridos</h3>
@@ -853,6 +1511,11 @@
                     <h3 class="sale-type-title">Pré-Venda</h3>
                     <p class="sale-type-desc">Compre antes do fechamento do container e ganhe vantagens exclusivas!</p>
                     
+                    <div class="economy-highlight">
+                        💰 ECONOMIA DE R$ 1.000 vs COMPRA AÉREA! 💰<br>
+                        <small>Sua chance de garantir por um preço muito mais em conta!</small>
+                    </div>
+                    
                     <div class="price-highlight" style="margin: 20px 0; background: linear-gradient(135deg, #28a745 0%, #20c997 100%); color: white; text-align: center;">
                         <strong>🎁 BRINDE EXCLUSIVO 🎁</strong><br>
                         <span style="font-size: 0.9rem;">Kit LED Line Premium:<br>Camiseta + Lixo Car + Aromatizante</span>
@@ -871,6 +1534,12 @@
                     <div class="sale-type-icon">⚡</div>
                     <h3 class="sale-type-title">Venda Direta</h3>
                     <p class="sale-type-desc">Produtos disponíveis no estoque atual com entrega rápida.</p>
+                    
+                    <div class="economy-highlight">
+                        💰 ECONOMIA DE R$ 1.000 vs COMPRA AÉREA! 💰<br>
+                        <small>Preço especial de importação marítima!</small>
+                    </div>
+                    
                     <ul class="sale-type-benefits">
                         <li>Produtos em estoque</li>
                         <li>Parcelamento sem juros</li>
@@ -878,6 +1547,28 @@
                         <li>Entrega imediata</li>
                     </ul>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Spin Wheel -->
+    <section class="wheel-section">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">🎰 Gire a Roleta e Ganhe Prêmios!</h2>
+            <p style="font-size: 1.2rem; margin-bottom: 40px;">Todo cliente tem direito a uma tentativa. Que tal sua sorte?</p>
+            
+            <div class="wheel-container">
+                <div class="wheel-pointer"></div>
+                <div class="spin-wheel" id="spinWheel">
+                    <div class="wheel-labels">
+                        <div class="wheel-label">10% OFF</div>
+                        <div class="wheel-label">CHAVEIRO</div>
+                        <div class="wheel-label">HALL DA<br>FAMA</div>
+                        <div class="wheel-label">BRINDE<br>SURPRESA</div>
+                    </div>
+                    <div class="wheel-center" onclick="spinWheel()">GIRE</div>
+                </div>
+                <div class="wheel-result" id="wheelResult"></div>
             </div>
         </div>
     </section>
@@ -913,6 +1604,22 @@
                 <div class="product-info-detailed">
                     <h1 class="product-title-detailed" id="productTitle">Nome do Produto</h1>
                     
+                    <div class="economy-calculator" id="economyCalculator">
+                        <div class="economy-title">💰 Sua Economia Comprando Agora</div>
+                        <div class="economy-comparison">
+                            <div class="price-option">
+                                <div class="price-label">Compra Aérea</div>
+                                <div class="price-value old" id="aerialPrice">R$ 0,00</div>
+                            </div>
+                            <div class="vs-divider">VS</div>
+                            <div class="price-option">
+                                <div class="price-label">Pré-Venda</div>
+                                <div class="price-value" id="presalePrice">R$ 0,00</div>
+                            </div>
+                        </div>
+                        <div class="savings-amount" id="savingsAmount">Você economiza R$ 1.000!</div>
+                    </div>
+                    
                     <ul class="product-features" id="productFeatures">
                         <!-- Features will be populated by JavaScript -->
                     </ul>
@@ -926,6 +1633,26 @@
                         </div>
                         <div class="total-display" id="totalDisplay">
                             Total: R$ 0,00
+                        </div>
+                        
+                        <div class="budget-calculator">
+                            <div class="budget-title">💳 Cabe no seu orçamento?</div>
+                            <div class="installment-slider">
+                                <input type="range" min="1" max="10" value="1" class="slider" id="installmentSlider">
+                            </div>
+                            <div class="installment-display" id="installmentDisplay">
+                                À vista: R$ 0,00
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="progress-section">
+                        <div class="progress-title">🎯 Progresso para Desconto Máximo</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="progressFill" style="width: 60%;"></div>
+                        </div>
+                        <div class="progress-text">
+                            Você está a <strong>R$ 500</strong> do desconto máximo de <strong>15%</strong>!
                         </div>
                     </div>
                 </div>
@@ -941,6 +1668,20 @@
             
             <div class="payment-options" id="paymentOptions">
                 <!-- Payment options will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Referral System -->
+    <section class="referral-section">
+        <div class="container">
+            <h2 class="referral-title">👥 Indique um Amigo e Ganhe Desconto!</h2>
+            <p>Compartilhe com seus amigos e ganhem desconto especial</p>
+            <div class="referral-code" id="referralCode">LEDLINE2024</div>
+            <div class="share-buttons">
+                <button class="share-btn" onclick="shareWhatsApp()">📱 WhatsApp</button>
+                <button class="share-btn" onclick="shareInstagram()">📷 Instagram</button>
+                <button class="share-btn" onclick="copyReferralLink()">🔗 Copiar Link</button>
             </div>
         </div>
     </section>
@@ -995,12 +1736,14 @@
                 name: 'Kit Grade Colmeia New Fiesta',
                 price: 1250,
                 stock: 15,
+                viewers: 12,
+                bestseller: true,
                 image: 'https://raw.githubusercontent.com/Led-Line-BR-Parts/led-line-images/refs/heads/main/images/Imagem_do_WhatsApp_de_2025-02-18_a_s_22.25.19_536957ba.webp',
                 images: [
-                    'https://raw.githubusercontent.com/Led-Line-BR-Parts/led-line-images/refs/heads/main/images/Imagem_do_WhatsApp_de_2025-02-18_a_s_22.25.19_536957ba.webp', // Imagem principal
-                    'https://raw.githubusercontent.com/Led-Line-BR-Parts/led-line-images/refs/heads/main/images/Imagem_do_WhatsApp_de_2025-02-18_a_s_22.25.19_603f6bfc.webp', // Vista lateral
-                    'https://raw.githubusercontent.com/Led-Line-BR-Parts/led-line-images/refs/heads/main/images/Imagem_do_WhatsApp_de_2025-02-18_a_s_22.25.18_f093e2b1.webp', // Detalhe instalação
-                    'https://raw.githubusercontent.com/Led-Line-BR-Parts/led-line-images/refs/heads/main/images/MOCKUP_SHOPIFY.webp'  // Medidas/dimensões
+                    'https://raw.githubusercontent.com/Led-Line-BR-Parts/led-line-images/refs/heads/main/images/Imagem_do_WhatsApp_de_2025-02-18_a_s_22.25.19_536957ba.webp',
+                    'https://raw.githubusercontent.com/Led-Line-BR-Parts/led-line-images/refs/heads/main/images/Imagem_do_WhatsApp_de_2025-02-18_a_s_22.25.19_603f6bfc.webp',
+                    'https://raw.githubusercontent.com/Led-Line-BR-Parts/led-line-images/refs/heads/main/images/Imagem_do_WhatsApp_de_2025-02-18_a_s_22.25.18_f093e2b1.webp',
+                    'https://raw.githubusercontent.com/Led-Line-BR-Parts/led-line-images/refs/heads/main/images/MOCKUP_SHOPIFY.webp'
                 ],
                 description: 'Grade frontal colmeia premium para New Fiesta',
                 features: [
@@ -1017,12 +1760,14 @@
                 name: 'Kit Grade Colmeia Focus MK2,5',
                 price: 1050,
                 stock: 20,
+                viewers: 8,
+                bestseller: true,
                 image: 'https://raw.githubusercontent.com/Led-Line-BR-Parts/led-line-images/refs/heads/main/images/Designsemnome_1_7f57786f-92da-4868-a167-774e716d5bf3.webp',
                 images: [
-                    'https://raw.githubusercontent.com/Led-Line-BR-Parts/led-line-images/refs/heads/main/images/Designsemnome_1_7f57786f-92da-4868-a167-774e716d5bf3.webp', // Imagem principal
-                    'https://raw.githubusercontent.com/Led-Line-BR-Parts/led-line-images/refs/heads/main/images/Designsemnome_3_7a9dceae-37d0-417a-97f4-e6e834518a93.webp', // Vista lateral
-                    'https://raw.githubusercontent.com/Led-Line-BR-Parts/led-line-images/refs/heads/main/images/Designsemnome_af737f9c-4250-4830-b1dc-d663b0118b05.webp', // Detalhe instalação
-                    'https://raw.githubusercontent.com/Led-Line-BR-Parts/led-line-images/refs/heads/main/images/shp.webp'  // Medidas/dimensões
+                    'https://raw.githubusercontent.com/Led-Line-BR-Parts/led-line-images/refs/heads/main/images/Designsemnome_1_7f57786f-92da-4868-a167-774e716d5bf3.webp',
+                    'https://raw.githubusercontent.com/Led-Line-BR-Parts/led-line-images/refs/heads/main/images/Designsemnome_3_7a9dceae-37d0-417a-97f4-e6e834518a93.webp',
+                    'https://raw.githubusercontent.com/Led-Line-BR-Parts/led-line-images/refs/heads/main/images/Designsemnome_af737f9c-4250-4830-b1dc-d663b0118b05.webp',
+                    'https://raw.githubusercontent.com/Led-Line-BR-Parts/led-line-images/refs/heads/main/images/shp.webp'
                 ],
                 description: 'Grade frontal colmeia para Focus MK2.5',
                 features: [
@@ -1039,12 +1784,14 @@
                 name: 'Aerofólio Ducktail Civic G10',
                 price: 1000,
                 stock: 4,
+                viewers: 15,
+                bestseller: false,
                 image: 'https://raw.githubusercontent.com/Led-Line-BR-Parts/led-line-images/refs/heads/main/images/Screenshot_141.webp',
                 images: [
-                    'https://raw.githubusercontent.com/Led-Line-BR-Parts/led-line-images/refs/heads/main/images/Screenshot_141.webp', // Imagem principal
-                    'https://raw.githubusercontent.com/Led-Line-BR-Parts/led-line-images/refs/heads/main/images/Screenshot_142.webp', // Vista lateral
-                    'https://raw.githubusercontent.com/Led-Line-BR-Parts/led-line-images/refs/heads/main/images/Screenshot_144.webp', // Detalhe instalação
-                    'https://raw.githubusercontent.com/Led-Line-BR-Parts/led-line-images/refs/heads/main/images/Screenshot_145.webp'  // Medidas/dimensões
+                    'https://raw.githubusercontent.com/Led-Line-BR-Parts/led-line-images/refs/heads/main/images/Screenshot_141.webp',
+                    'https://raw.githubusercontent.com/Led-Line-BR-Parts/led-line-images/refs/heads/main/images/Screenshot_142.webp',
+                    'https://raw.githubusercontent.com/Led-Line-BR-Parts/led-line-images/refs/heads/main/images/Screenshot_144.webp',
+                    'https://raw.githubusercontent.com/Led-Line-BR-Parts/led-line-images/refs/heads/main/images/Screenshot_145.webp'
                 ],
                 description: 'Aerofólio ducktail estilo esportivo para Civic G10',
                 features: [
@@ -1061,12 +1808,14 @@
                 name: 'Grade do Fiesta ST',
                 price: 900,
                 stock: 4,
+                viewers: 6,
+                bestseller: false,
                 image: 'https://raw.githubusercontent.com/Led-Line-BR-Parts/led-line-images/refs/heads/main/images/7d01f874-9916-4d79-8aae-e988e5667ec4.webp',
                 images: [
-                    'https://raw.githubusercontent.com/Led-Line-BR-Parts/led-line-images/refs/heads/main/images/7d01f874-9916-4d79-8aae-e988e5667ec4.webp', // Imagem principal
-                    'https://raw.githubusercontent.com/Led-Line-BR-Parts/led-line-images/refs/heads/main/images/Screenshot_48.webp', // Vista lateral
-                    'https://raw.githubusercontent.com/Led-Line-BR-Parts/led-line-images/refs/heads/main/images/7e12f646-a6b2-41ac-bd5e-720f5d7046d8.webp', // Detalhe instalação
-                    'https://raw.githubusercontent.com/Led-Line-BR-Parts/led-line-images/refs/heads/main/images/7d01f874-9916-4d79-8aae-e988e5667ec4.webp'  // Medidas/dimensões
+                    'https://raw.githubusercontent.com/Led-Line-BR-Parts/led-line-images/refs/heads/main/images/7d01f874-9916-4d79-8aae-e988e5667ec4.webp',
+                    'https://raw.githubusercontent.com/Led-Line-BR-Parts/led-line-images/refs/heads/main/images/Screenshot_48.webp',
+                    'https://raw.githubusercontent.com/Led-Line-BR-Parts/led-line-images/refs/heads/main/images/7e12f646-a6b2-41ac-bd5e-720f5d7046d8.webp',
+                    'https://raw.githubusercontent.com/Led-Line-BR-Parts/led-line-images/refs/heads/main/images/7d01f874-9916-4d79-8aae-e988e5667ec4.webp'
                 ],
                 description: 'Grade frontal esportiva estilo ST para Fiesta',
                 features: [
@@ -1083,12 +1832,14 @@
                 name: 'Parachoque New Fiesta ST',
                 price: 4500,
                 stock: 10,
+                viewers: 9,
+                bestseller: false,
                 image: 'https://raw.githubusercontent.com/Led-Line-BR-Parts/led-line-images/refs/heads/main/images/FiestaST_RedFront.webp',
                 images: [
-                    'https://raw.githubusercontent.com/Led-Line-BR-Parts/led-line-images/refs/heads/main/images/FiestaST_RedFront.webp', // Imagem principal
-                    'https://raw.githubusercontent.com/Led-Line-BR-Parts/led-line-images/refs/heads/main/images/hotfiesta-magnews.webp', // Vista lateral
-                    'https://raw.githubusercontent.com/Led-Line-BR-Parts/led-line-images/refs/heads/main/images/2017-ford-fiesta-st-114-1-1557785159.webp', // Detalhe instalação
-                    'https://raw.githubusercontent.com/Led-Line-BR-Parts/led-line-images/refs/heads/main/images/Screenshot_338.webp'  // Medidas/dimensões
+                    'https://raw.githubusercontent.com/Led-Line-BR-Parts/led-line-images/refs/heads/main/images/FiestaST_RedFront.webp',
+                    'https://raw.githubusercontent.com/Led-Line-BR-Parts/led-line-images/refs/heads/main/images/hotfiesta-magnews.webp',
+                    'https://raw.githubusercontent.com/Led-Line-BR-Parts/led-line-images/refs/heads/main/images/2017-ford-fiesta-st-114-1-1557785159.webp',
+                    'https://raw.githubusercontent.com/Led-Line-BR-Parts/led-line-images/refs/heads/main/images/Screenshot_338.webp'
                 ],
                 description: 'Parachoque frontal completo estilo ST para New Fiesta',
                 features: [
@@ -1105,12 +1856,14 @@
                 name: 'Saia Lateral em ABS',
                 price: 1000,
                 stock: 9,
+                viewers: 7,
+                bestseller: false,
                 image: 'https://raw.githubusercontent.com/Led-Line-BR-Parts/led-line-images/refs/heads/main/images/hotfiesta-magnews.webp',
                 images: [
-                    'https://raw.githubusercontent.com/Led-Line-BR-Parts/led-line-images/refs/heads/main/images/hotfiesta-magnews.webp', // Imagem principal
-                    'https://raw.githubusercontent.com/Led-Line-BR-Parts/led-line-images/refs/heads/main/images/D_NQ_NP_361001-MLB20259796869_032015-O%20(1).webp', // Vista lateral
-                    'https://raw.githubusercontent.com/Led-Line-BR-Parts/led-line-images/refs/heads/main/images/saia-lateral-new-fiesta-31-85a75284668ae3576316823680849980-1024-1024.webp', // Detalhe instalação
-                    'https://raw.githubusercontent.com/Led-Line-BR-Parts/led-line-images/refs/heads/main/images/saia-lateral-new-fiesta-modelo-st02.webp'  // Medidas/dimensões
+                    'https://raw.githubusercontent.com/Led-Line-BR-Parts/led-line-images/refs/heads/main/images/hotfiesta-magnews.webp',
+                    'https://raw.githubusercontent.com/Led-Line-BR-Parts/led-line-images/refs/heads/main/images/D_NQ_NP_361001-MLB20259796869_032015-O%20(1).webp',
+                    'https://raw.githubusercontent.com/Led-Line-BR-Parts/led-line-images/refs/heads/main/images/saia-lateral-new-fiesta-31-85a75284668ae3576316823680849980-1024-1024.webp',
+                    'https://raw.githubusercontent.com/Led-Line-BR-Parts/led-line-images/refs/heads/main/images/saia-lateral-new-fiesta-modelo-st02.webp'
                 ],
                 description: 'Saia lateral esportiva em abs - fiesta',
                 features: [
@@ -1127,12 +1880,14 @@
                 name: 'Parachoque Focus RS',
                 price: 4000,
                 stock: 5,
+                viewers: 11,
+                bestseller: false,
                 image: 'https://raw.githubusercontent.com/Led-Line-BR-Parts/led-line-images/refs/heads/main/images/727_2.webp',
                 images: [
-                    'https://raw.githubusercontent.com/Led-Line-BR-Parts/led-line-images/refs/heads/main/images/727_2.webp', // Imagem principal
-                    'https://raw.githubusercontent.com/Led-Line-BR-Parts/led-line-images/refs/heads/main/images/1161748_6_1601767991.webp', // Vista lateral
-                    'https://raw.githubusercontent.com/Led-Line-BR-Parts/led-line-images/refs/heads/main/images/032F3E7E-DDC7-4AC7-8515-F17BACF11A16.webp', // Detalhe instalação
-                    'https://raw.githubusercontent.com/Led-Line-BR-Parts/led-line-images/refs/heads/main/images/W-FD08.1015.A.webp'  // Medidas/dimensões
+                    'https://raw.githubusercontent.com/Led-Line-BR-Parts/led-line-images/refs/heads/main/images/727_2.webp',
+                    'https://raw.githubusercontent.com/Led-Line-BR-Parts/led-line-images/refs/heads/main/images/1161748_6_1601767991.webp',
+                    'https://raw.githubusercontent.com/Led-Line-BR-Parts/led-line-images/refs/heads/main/images/032F3E7E-DDC7-4AC7-8515-F17BACF11A16.webp',
+                    'https://raw.githubusercontent.com/Led-Line-BR-Parts/led-line-images/refs/heads/main/images/W-FD08.1015.A.webp'
                 ],
                 description: 'Parachoque frontal esportivo para Focus RS',
                 features: [
@@ -1150,11 +1905,27 @@
         let currentSaleType = 'presale';
         let currentProduct = null;
         let currentQuantity = 1;
+        let wheelSpinned = false;
+
+        // Sample notifications
+        const notifications = [
+            { name: 'João', city: 'Porto Alegre', product: 'Grade Fiesta', avatar: 'J' },
+            { name: 'Maria', city: 'São Paulo', product: 'Grade Focus', avatar: 'M' },
+            { name: 'Pedro', city: 'Rio de Janeiro', product: 'Aerofólio Civic', avatar: 'P' },
+            { name: 'Ana', city: 'Belo Horizonte', product: 'Parachoque ST', avatar: 'A' },
+            { name: 'Carlos', city: 'Curitiba', product: 'Saia Lateral', avatar: 'C' },
+            { name: 'Lucia', city: 'Salvador', product: 'Grade Fiesta', avatar: 'L' },
+            { name: 'Roberto', city: 'Fortaleza', product: 'Grade Focus', avatar: 'R' },
+            { name: 'Fernanda', city: 'Brasília', product: 'Parachoque Focus', avatar: 'F' }
+        ];
 
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
             setupEventListeners();
             renderProducts();
+            startCountdown();
+            startNotifications();
+            updateViewersCount();
         });
 
         function setupEventListeners() {
@@ -1170,6 +1941,72 @@
 
             // Quantity input
             document.getElementById('quantity').addEventListener('change', updateCalculations);
+            
+            // Installment slider
+            document.getElementById('installmentSlider').addEventListener('input', updateInstallmentDisplay);
+        }
+
+        function startCountdown() {
+            const targetDate = new Date();
+            targetDate.setDate(targetDate.getDate() + 10);
+            
+            function updateCountdown() {
+                const now = new Date().getTime();
+                const distance = targetDate.getTime() - now;
+                
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                
+                document.getElementById('days').textContent = days.toString().padStart(2, '0');
+                document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+                document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+                document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+                
+                if (distance < 0) {
+                    document.querySelector('.timer-bar').innerHTML = '<div class="container"><div class="timer-content"><span class="timer-text">🚢 CONTAINER FECHADO!</span></div></div>';
+                }
+            }
+            
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+        }
+
+        function startNotifications() {
+            let notificationIndex = 0;
+            
+            function showNotification() {
+                const notification = notifications[notificationIndex];
+                const notificationEl = document.getElementById('liveNotification');
+                
+                document.getElementById('notificationAvatar').textContent = notification.avatar;
+                document.getElementById('notificationName').textContent = `${notification.name} de ${notification.city}`;
+                document.getElementById('notificationAction').textContent = `acabou de comprar 1x ${notification.product}`;
+                
+                notificationEl.classList.add('show');
+                
+                setTimeout(() => {
+                    notificationEl.classList.remove('show');
+                }, 4000);
+                
+                notificationIndex = (notificationIndex + 1) % notifications.length;
+            }
+            
+            // Show first notification after 3 seconds
+            setTimeout(showNotification, 3000);
+            
+            // Show subsequent notifications every 8 seconds
+            setInterval(showNotification, 8000);
+        }
+
+        function updateViewersCount() {
+            setInterval(() => {
+                Object.values(products).forEach(product => {
+                    product.viewers = Math.max(1, product.viewers + Math.floor(Math.random() * 3) - 1);
+                });
+                renderProducts();
+            }, 5000);
         }
 
         function renderProducts() {
@@ -1183,7 +2020,6 @@
                 const card = document.createElement('div');
                 card.className = 'product-card';
                 
-                // Create image element
                 let imageHtml = '';
                 if (product.image && product.image.startsWith('http')) {
                     imageHtml = `<img src="${product.image}" alt="${product.name}" style="width: 100%; height: 100%; object-fit: cover;">`;
@@ -1195,6 +2031,9 @@
                     <div class="product-image">
                         ${imageHtml}
                         <div class="stock-badge ${stockClass}">${stockText}</div>
+                        ${product.bestseller ? '<div class="bestseller-badge">🏆 MAIS VENDIDO</div>' : ''}
+                        <div class="viewers-badge">👀 ${product.viewers} pessoas vendo</div>
+                        <div class="recommendation-badge">⭐ 95% recomendam</div>
                     </div>
                     <div class="product-info">
                         <h3 class="product-name">${product.name}</h3>
@@ -1218,15 +2057,12 @@
             currentProduct = products[productId];
             currentQuantity = 1;
             
-            // Update active product card
             document.querySelectorAll('.product-card').forEach(card => card.classList.remove('active'));
             event.currentTarget.classList.add('active');
             
-            // Show product details
             showProductDetails();
             updateCalculations();
             
-            // Scroll to details
             document.getElementById('product-details').scrollIntoView({ behavior: 'smooth' });
         }
 
@@ -1236,18 +2072,14 @@
             const detailsSection = document.getElementById('product-details');
             detailsSection.classList.add('active');
             
-            // Update product info
             document.getElementById('productTitle').textContent = currentProduct.name;
             document.getElementById('quantity').value = currentQuantity;
             document.getElementById('quantity').max = currentProduct.stock;
             
-            // Update main image
             updateMainImage(0);
-            
-            // Update thumbnails (simple version)
             updateSimpleThumbnails();
+            updateEconomyCalculator();
             
-            // Update features
             const featuresContainer = document.getElementById('productFeatures');
             featuresContainer.innerHTML = '';
             
@@ -1268,7 +2100,6 @@
             const images = currentProduct.images || [currentProduct.image];
             const selectedImage = images[imageIndex] || currentProduct.image;
             
-            // Simple version - just update innerHTML
             if (selectedImage && selectedImage.startsWith('http')) {
                 mainImage.innerHTML = `<img src="${selectedImage}" alt="${currentProduct.name}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">`;
             } else {
@@ -1281,8 +2112,6 @@
             thumbnailGrid.innerHTML = '';
             
             const images = currentProduct.images || [currentProduct.image];
-            
-            // Show up to 4 thumbnails
             const maxThumbnails = Math.min(images.length, 4);
             
             for (let i = 0; i < maxThumbnails; i++) {
@@ -1294,7 +2123,6 @@
                     thumbnail.classList.add('active');
                 }
                 
-                // Simple thumbnail creation
                 if (image && image.startsWith('http')) {
                     thumbnail.style.backgroundImage = `url(${image})`;
                     thumbnail.style.backgroundSize = 'cover';
@@ -1307,7 +2135,6 @@
                     thumbnail.textContent = image || '🚗';
                 }
                 
-                // Click event
                 thumbnail.addEventListener('click', () => {
                     document.querySelectorAll('.thumbnail').forEach(thumb => thumb.classList.remove('active'));
                     thumbnail.classList.add('active');
@@ -1317,12 +2144,38 @@
                 thumbnailGrid.appendChild(thumbnail);
             }
             
-            // Fill remaining spots with placeholder if needed
             for (let i = maxThumbnails; i < 4; i++) {
                 const placeholder = document.createElement('div');
                 placeholder.className = 'thumbnail';
                 placeholder.style.background = '#f0f0f0';
                 thumbnailGrid.appendChild(placeholder);
+            }
+        }
+
+        function updateEconomyCalculator() {
+            if (!currentProduct) return;
+            
+            const presalePrice = currentProduct.price;
+            const aerialPrice = presalePrice + 1000;
+            
+            document.getElementById('presalePrice').textContent = formatCurrency(presalePrice);
+            document.getElementById('aerialPrice').textContent = formatCurrency(aerialPrice);
+            document.getElementById('savingsAmount').textContent = `Você economiza R$ 1.000!`;
+        }
+
+        function updateInstallmentDisplay() {
+            if (!currentProduct) return;
+            
+            const slider = document.getElementById('installmentSlider');
+            const display = document.getElementById('installmentDisplay');
+            const installments = parseInt(slider.value);
+            const total = currentProduct.price * currentQuantity;
+            
+            if (installments === 1) {
+                display.textContent = `À vista: ${formatCurrency(total)}`;
+            } else {
+                const installmentValue = total / installments;
+                display.textContent = `${installments}x de ${formatCurrency(installmentValue)} = ${formatCurrency(total)}`;
             }
         }
 
@@ -1345,6 +2198,8 @@
             
             document.getElementById('totalDisplay').textContent = `Total: ${formatCurrency(total)}`;
             
+            updateEconomyCalculator();
+            updateInstallmentDisplay();
             updatePaymentOptions();
         }
 
@@ -1356,7 +2211,6 @@
             
             const baseTotal = currentProduct.price * currentQuantity;
             
-            // Option 1: PIX à vista (10% discount)
             const pixDiscount = baseTotal * 0.1;
             const pixTotal = baseTotal - pixDiscount;
             
@@ -1373,7 +2227,6 @@
             });
             container.appendChild(pixOption);
             
-            // Option 2: Parcelamento sem juros
             const installmentOption = createPaymentOption({
                 id: 'installment',
                 title: 'Parcelamento sem Juros',
@@ -1388,7 +2241,6 @@
             });
             container.appendChild(installmentOption);
             
-            // Option 3: 50/50 (only for presale)
             if (currentSaleType === 'presale') {
                 const halfNow = baseTotal / 2;
                 const fiftyFiftyOption = createPaymentOption({
@@ -1445,6 +2297,7 @@
             message += `📦 *Produto:* ${currentProduct.name}\n`;
             message += `🔢 *Quantidade:* ${currentQuantity}\n`;
             message += `💰 *Valor Unitário:* ${formatCurrency(currentProduct.price)}\n`;
+            message += `💲 *Economia vs Aéreo:* R$ 1.000\n`;
             
             if (currentSaleType === 'presale') {
                 message += `🎁 *BRINDE GRÁTIS:* Kit LED Line Premium (Camiseta + Lixo Car + Aromatizante)\n`;
@@ -1470,10 +2323,51 @@
             }
             
             message += `\n\n🚚 *Prazo de Entrega:* 90 dias corridos`;
+            message += `\n✅ *Garantia de Satisfação:* 100%`;
+            message += `\n⭐ *95% dos clientes recomendam*`;
             message += `\n\n*Gostaria de confirmar este pedido!*`;
             
             const whatsappUrl = `https://wa.me/5554991719624?text=${encodeURIComponent(message)}`;
             document.getElementById('whatsappBtn').href = whatsappUrl;
+        }
+
+        function spinWheel() {
+            if (wheelSpinned) {
+                document.getElementById('wheelResult').textContent = '🎯 Você já girou a roleta hoje!';
+                return;
+            }
+            
+            const wheel = document.getElementById('spinWheel');
+            const prizes = ['10% OFF', 'CHAVEIRO', 'HALL DA FAMA', 'BRINDE SURPRESA'];
+            const randomPrize = prizes[Math.floor(Math.random() * prizes.length)];
+            
+            wheel.classList.add('spinning');
+            
+            setTimeout(() => {
+                wheel.classList.remove('spinning');
+                document.getElementById('wheelResult').textContent = `🎉 Parabéns! Você ganhou: ${randomPrize}!`;
+                wheelSpinned = true;
+            }, 2000);
+        }
+
+        function openWhatsApp() {
+            window.open('https://wa.me/5554991719624?text=Olá! Preciso de ajuda com os produtos da LED Line BR.', '_blank');
+        }
+
+        function shareWhatsApp() {
+            const message = `🚗 Descobri peças automotivas incríveis na LED Line BR!\n\nEconomize R$ 1.000 vs compra aérea!\n\nUse meu código: LEDLINE2024\n\nhttps://ledlinebrparts.com`;
+            window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank');
+        }
+
+        function shareInstagram() {
+            alert('📷 Compartilhe nossa página no seu Stories do Instagram e marque @ledlinebrparts para ganhar desconto especial!');
+        }
+
+        function copyReferralLink() {
+            const link = 'https://ledlinebrparts.com?ref=LEDLINE2024';
+            navigator.clipboard.writeText(link).then(() => {
+                alert('🔗 Link copiado! Compartilhe com seus amigos e ganhem desconto especial!');
+            });
         }
 
         function formatCurrency(value) {
