@@ -1063,10 +1063,10 @@
                 stock: 4,
                 image: '🏎️',
                 images: [
-                    'https://raw.githubusercontent.com/Led-Line-BR-Parts/led-line-images/refs/heads/main/images/7d01f874-9916-4d79-8aae-e988e5667ec4.webp', // Imagem principal
-                    'https://raw.githubusercontent.com/Led-Line-BR-Parts/led-line-images/refs/heads/main/images/7e12f646-a6b2-41ac-bd5e-720f5d7046d8.webp', // Vista lateral
-                    'https://raw.githubusercontent.com/Led-Line-BR-Parts/led-line-images/refs/heads/main/images/c2b25c7e-46d8-48b7-89b3-446892cdf7ac.webp', // Detalhe instalação
-                    'https://raw.githubusercontent.com/Led-Line-BR-Parts/led-line-images/refs/heads/main/images/Screenshot_48.webp'  // Medidas/dimensões
+                    '🏎️', // Imagem principal
+                    '🚗', // Vista lateral
+                    '🔧', // Detalhe instalação
+                    '📏'  // Medidas/dimensões
                 ],
                 description: 'Grade frontal esportiva estilo ST para Fiesta',
                 features: [
@@ -1183,53 +1183,25 @@
                 const card = document.createElement('div');
                 card.className = 'product-card';
                 
-                // Create product image div
-                const productImageDiv = document.createElement('div');
-                productImageDiv.className = 'product-image';
-                
-                // Check if image is URL or emoji and create appropriate element
+                // Create image element
+                let imageHtml = '';
                 if (product.image && product.image.startsWith('http')) {
-                    const img = document.createElement('img');
-                    img.src = product.image;
-                    img.alt = product.name;
-                    img.style.width = '100%';
-                    img.style.height = '100%';
-                    img.style.objectFit = 'cover';
-                    img.onerror = function() {
-                        // If image fails to load, show emoji fallback
-                        this.style.display = 'none';
-                        const fallback = document.createElement('span');
-                        fallback.style.fontSize = '4rem';
-                        fallback.textContent = '🚗';
-                        productImageDiv.appendChild(fallback);
-                    };
-                    productImageDiv.appendChild(img);
+                    imageHtml = `<img src="${product.image}" alt="${product.name}" style="width: 100%; height: 100%; object-fit: cover;">`;
                 } else {
-                    // Show emoji if not URL
-                    const emojiSpan = document.createElement('span');
-                    emojiSpan.style.fontSize = '4rem';
-                    emojiSpan.textContent = product.image || '🚗';
-                    productImageDiv.appendChild(emojiSpan);
+                    imageHtml = `<span style="font-size: 4rem;">${product.image || '🚗'}</span>`;
                 }
                 
-                // Add stock badge
-                const stockBadge = document.createElement('div');
-                stockBadge.className = `stock-badge ${stockClass}`;
-                stockBadge.textContent = stockText;
-                productImageDiv.appendChild(stockBadge);
-                
-                // Create product info
-                const productInfo = document.createElement('div');
-                productInfo.className = 'product-info';
-                productInfo.innerHTML = `
-                    <h3 class="product-name">${product.name}</h3>
-                    <div class="product-price">${formatCurrency(product.price)}</div>
-                    <p class="product-desc">${product.description}</p>
+                card.innerHTML = `
+                    <div class="product-image">
+                        ${imageHtml}
+                        <div class="stock-badge ${stockClass}">${stockText}</div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-name">${product.name}</h3>
+                        <div class="product-price">${formatCurrency(product.price)}</div>
+                        <p class="product-desc">${product.description}</p>
+                    </div>
                 `;
-                
-                // Assemble card
-                card.appendChild(productImageDiv);
-                card.appendChild(productInfo);
                 
                 if (product.stock > 0) {
                     card.addEventListener('click', () => selectProduct(product.id));
@@ -1270,10 +1242,10 @@
             document.getElementById('quantity').max = currentProduct.stock;
             
             // Update main image
-            updateMainImage(0); // Show first image by default
+            updateMainImage(0);
             
-            // Update thumbnails
-            updateThumbnails();
+            // Update thumbnails (simple version)
+            updateSimpleThumbnails();
             
             // Update features
             const featuresContainer = document.getElementById('productFeatures');
@@ -1294,62 +1266,40 @@
         function updateMainImage(imageIndex) {
             const mainImage = document.getElementById('mainImage');
             const images = currentProduct.images || [currentProduct.image];
-            const selectedImage = images[imageIndex] || images[0];
+            const selectedImage = images[imageIndex] || currentProduct.image;
             
-            // Clear existing content
-            mainImage.innerHTML = '';
-            
-            // Check if it's a URL or emoji
+            // Simple version - just update innerHTML
             if (selectedImage && selectedImage.startsWith('http')) {
-                const img = document.createElement('img');
-                img.src = selectedImage;
-                img.alt = currentProduct.name;
-                img.style.width = '100%';
-                img.style.height = '100%';
-                img.style.objectFit = 'cover';
-                img.style.borderRadius = '12px';
-                img.onerror = function() {
-                    // If image fails to load, show emoji fallback
-                    mainImage.innerHTML = `<span style="font-size: 6rem;">🚗</span>`;
-                };
-                mainImage.appendChild(img);
+                mainImage.innerHTML = `<img src="${selectedImage}" alt="${currentProduct.name}" style="width: 100%; height: 100%; object-fit: cover; border-radius: 12px;">`;
             } else {
-                // Show emoji
                 mainImage.innerHTML = `<span style="font-size: 6rem;">${selectedImage || '🚗'}</span>`;
             }
         }
 
-        function updateThumbnails() {
+        function updateSimpleThumbnails() {
             const thumbnailGrid = document.querySelector('.thumbnail-grid');
             thumbnailGrid.innerHTML = '';
             
             const images = currentProduct.images || [currentProduct.image];
             
-            images.forEach((image, index) => {
+            // Show up to 4 thumbnails
+            const maxThumbnails = Math.min(images.length, 4);
+            
+            for (let i = 0; i < maxThumbnails; i++) {
+                const image = images[i];
                 const thumbnail = document.createElement('div');
                 thumbnail.className = 'thumbnail';
                 
-                // Check if it's a URL or emoji
+                if (i === 0) {
+                    thumbnail.classList.add('active');
+                }
+                
+                // Simple thumbnail creation
                 if (image && image.startsWith('http')) {
-                    const img = document.createElement('img');
-                    img.src = image;
-                    img.alt = `${currentProduct.name} - Imagem ${index + 1}`;
-                    img.style.width = '100%';
-                    img.style.height = '100%';
-                    img.style.objectFit = 'cover';
-                    img.style.borderRadius = '8px';
-                    img.onerror = function() {
-                        // If image fails to load, show emoji fallback
-                        thumbnail.innerHTML = '';
-                        thumbnail.style.display = 'flex';
-                        thumbnail.style.alignItems = 'center';
-                        thumbnail.style.justifyContent = 'center';
-                        thumbnail.style.fontSize = '1.5rem';
-                        thumbnail.textContent = '🚗';
-                    };
-                    thumbnail.appendChild(img);
+                    thumbnail.style.backgroundImage = `url(${image})`;
+                    thumbnail.style.backgroundSize = 'cover';
+                    thumbnail.style.backgroundPosition = 'center';
                 } else {
-                    // Show emoji
                     thumbnail.style.display = 'flex';
                     thumbnail.style.alignItems = 'center';
                     thumbnail.style.justifyContent = 'center';
@@ -1357,27 +1307,23 @@
                     thumbnail.textContent = image || '🚗';
                 }
                 
-                // Add active state for first thumbnail
-                if (index === 0) {
-                    thumbnail.classList.add('active');
-                }
-                
-                // Add click event
+                // Click event
                 thumbnail.addEventListener('click', () => {
-                    // Remove active state from all thumbnails
-                    document.querySelectorAll('.thumbnail').forEach(thumb => {
-                        thumb.classList.remove('active');
-                    });
-                    
-                    // Add active state to clicked thumbnail
+                    document.querySelectorAll('.thumbnail').forEach(thumb => thumb.classList.remove('active'));
                     thumbnail.classList.add('active');
-                    
-                    // Update main image
-                    updateMainImage(index);
+                    updateMainImage(i);
                 });
                 
                 thumbnailGrid.appendChild(thumbnail);
-            });
+            }
+            
+            // Fill remaining spots with placeholder if needed
+            for (let i = maxThumbnails; i < 4; i++) {
+                const placeholder = document.createElement('div');
+                placeholder.className = 'thumbnail';
+                placeholder.style.background = '#f0f0f0';
+                thumbnailGrid.appendChild(placeholder);
+            }
         }
 
         function changeQuantity(delta) {
